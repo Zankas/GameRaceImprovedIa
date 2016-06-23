@@ -64,6 +64,12 @@ public abstract class AbstractCarManager implements CarManager {
 			car2.setSpeed(car.getSpeed() - 0.05);
 		} else if (aheadCar == 2) {
 			car.setSpeed(car.getSpeed() - 0.05);
+		} else if (aheadCar == 3) {
+			car.setAngle(car.getAngle() + 0.012);
+			car2.setAngle(car.getAngle() - 0.012);
+		} else if (aheadCar == 4) {
+			car.setAngle(car.getAngle() - 0.012);
+			car2.setAngle(car.getAngle() + 0.012);
 		}
 	}
 
@@ -82,6 +88,10 @@ public abstract class AbstractCarManager implements CarManager {
 					return 1;
 				} else
 					return 2;
+			} else if (carManager.getDirection() == Direction.RIGHT) {
+				return 3;
+			} else {
+				return 4;
 			}
 		} else if (direction == Direction.DOWN) {
 			if (carManager.getDirection() == Direction.UP)
@@ -92,6 +102,10 @@ public abstract class AbstractCarManager implements CarManager {
 					return 2;
 				} else
 					return 1;
+			} else if (carManager.getDirection() == Direction.LEFT) {
+				return 3;
+			} else {
+				return 4;
 			}
 		} else if (direction == Direction.LEFT) {
 			if (carManager.getDirection() == Direction.RIGHT)
@@ -103,8 +117,12 @@ public abstract class AbstractCarManager implements CarManager {
 				} else {
 					return 2;
 				}
+			} else if (carManager.getDirection() == Direction.UP) {
+				return 3;
+			} else {
+				return 4;
 			}
-		} else if (direction == Direction.RIGHT) {
+		} else { // if (direction == Direction.RIGHT)
 			if (carManager.getDirection() == Direction.LEFT)
 				return 0;
 			else if (carManager.getDirection() == Direction.RIGHT) {
@@ -113,11 +131,12 @@ public abstract class AbstractCarManager implements CarManager {
 					return 2;
 				} else
 					return 1;
+			} else if (carManager.getDirection() == Direction.UP) {
+				return 4;
+			} else {
+				return 3;
 			}
 		}
-
-		return -1;
-
 	}
 
 	private void moving(boolean condition) {
