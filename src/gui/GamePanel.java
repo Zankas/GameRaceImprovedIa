@@ -611,6 +611,55 @@ public class GamePanel extends JPanel {
 		g.drawLine((int) game.getWorld().getCar2().getX3() + I, (int) game.getWorld().getCar2().getY3() + J,
 				(int) game.getWorld().getCar2().getX4() + I, (int) game.getWorld().getCar2().getY4() + J);
 
+		if (game.getWorld().getCar3() != null) {
+			g.setColor(Color.WHITE);
+			g.drawLine((int) game.getWorld().getCar3().getX1rot() + I, (int) game.getWorld().getCar3().getY1rot() + J,
+					(int) game.getWorld().getCar3().getX2rot() + I, (int) game.getWorld().getCar3().getY2rot() + J);
+			g.drawLine((int) game.getWorld().getCar3().getX1rot() + I, (int) game.getWorld().getCar3().getY1rot() + J,
+					(int) game.getWorld().getCar3().getX3rot() + I, (int) game.getWorld().getCar3().getY3rot() + J);
+			g.drawLine((int) game.getWorld().getCar3().getX2rot() + I, (int) game.getWorld().getCar3().getY2rot() + J,
+					(int) game.getWorld().getCar3().getX4rot() + I, (int) game.getWorld().getCar3().getY4rot() + J);
+			g.setColor(Color.RED);
+			g.drawLine((int) game.getWorld().getCar3().getX3rot() + I, (int) game.getWorld().getCar3().getY3rot() + J,
+					(int) game.getWorld().getCar3().getX4rot() + I, (int) game.getWorld().getCar3().getY4rot() + J);
+
+			// coordinate macchina fisse
+			g.setColor(Color.WHITE);
+			g.drawLine((int) game.getWorld().getCar3().getX1() + I, (int) game.getWorld().getCar3().getY1() + J,
+					(int) game.getWorld().getCar3().getX2() + I, (int) game.getWorld().getCar3().getY2() + J);
+			g.drawLine((int) game.getWorld().getCar3().getX1() + I, (int) game.getWorld().getCar3().getY1() + J,
+					(int) game.getWorld().getCar3().getX3() + I, (int) game.getWorld().getCar3().getY3() + J);
+			g.drawLine((int) game.getWorld().getCar3().getX2() + I, (int) game.getWorld().getCar3().getY2() + J,
+					(int) game.getWorld().getCar3().getX4() + I, (int) game.getWorld().getCar3().getY4() + J);
+			g.setColor(Color.RED);
+			g.drawLine((int) game.getWorld().getCar3().getX3() + I, (int) game.getWorld().getCar3().getY3() + J,
+					(int) game.getWorld().getCar3().getX4() + I, (int) game.getWorld().getCar3().getY4() + J);
+		}
+
+		if (game.getWorld().getCar4() != null) {
+			g.setColor(Color.WHITE);
+			g.drawLine((int) game.getWorld().getCar4().getX1rot() + I, (int) game.getWorld().getCar4().getY1rot() + J,
+					(int) game.getWorld().getCar4().getX2rot() + I, (int) game.getWorld().getCar4().getY2rot() + J);
+			g.drawLine((int) game.getWorld().getCar4().getX1rot() + I, (int) game.getWorld().getCar4().getY1rot() + J,
+					(int) game.getWorld().getCar4().getX3rot() + I, (int) game.getWorld().getCar4().getY3rot() + J);
+			g.drawLine((int) game.getWorld().getCar4().getX2rot() + I, (int) game.getWorld().getCar4().getY2rot() + J,
+					(int) game.getWorld().getCar4().getX4rot() + I, (int) game.getWorld().getCar4().getY4rot() + J);
+			g.setColor(Color.RED);
+			g.drawLine((int) game.getWorld().getCar4().getX3rot() + I, (int) game.getWorld().getCar4().getY3rot() + J,
+					(int) game.getWorld().getCar4().getX4rot() + I, (int) game.getWorld().getCar4().getY4rot() + J);
+
+			// coordinate macchina fisse
+			g.setColor(Color.WHITE);
+			g.drawLine((int) game.getWorld().getCar4().getX1() + I, (int) game.getWorld().getCar4().getY1() + J,
+					(int) game.getWorld().getCar4().getX2() + I, (int) game.getWorld().getCar4().getY2() + J);
+			g.drawLine((int) game.getWorld().getCar4().getX1() + I, (int) game.getWorld().getCar4().getY1() + J,
+					(int) game.getWorld().getCar4().getX3() + I, (int) game.getWorld().getCar4().getY3() + J);
+			g.drawLine((int) game.getWorld().getCar4().getX2() + I, (int) game.getWorld().getCar4().getY2() + J,
+					(int) game.getWorld().getCar4().getX4() + I, (int) game.getWorld().getCar4().getY4() + J);
+			g.setColor(Color.RED);
+			g.drawLine((int) game.getWorld().getCar4().getX3() + I, (int) game.getWorld().getCar4().getY3() + J,
+					(int) game.getWorld().getCar4().getX4() + I, (int) game.getWorld().getCar4().getY4() + J);
+		}
 	}
 
 	private void paintPanelGame(Graphics2D g) {

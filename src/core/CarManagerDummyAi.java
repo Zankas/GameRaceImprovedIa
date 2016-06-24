@@ -1,6 +1,6 @@
 package core;
 
-public class CarManagerAi extends AbstractCarManager {
+public class CarManagerDummyAi extends AbstractCarManager {
 
 	BlockRoadObject lastPiece;
 	GameManager game;
@@ -10,7 +10,7 @@ public class CarManagerAi extends AbstractCarManager {
 	double lastX, lastY;
 	final double AXEL = 2.0, BRAKE = 1.3;
 
-	public CarManagerAi(World w, Car car, GameManager game) {
+	public CarManagerDummyAi(World w, Car car, GameManager game) {
 		super(w, car);
 		this.lastX = car.getX1rot();
 		this.lastY = car.getY1rot();

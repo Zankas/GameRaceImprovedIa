@@ -61,17 +61,6 @@ public class Car {
 
 		lock.unlock();
 	}
-	//
-	// public Car(Car car, int value) {
-	// if (value == 1) {
-	// setX((int) car.getX1() + (int) (car.getX1() - car.getX3() / 2));
-	// setY((int) car.getY1() + (int) (car.getY2() - car.getY1() / 2));
-	// setXYrotate();
-	// setAngle(0);
-	// this.ID = car.ID + 1;
-	// }
-	//
-	// }
 
 	public double getSpeed() {
 		try {
@@ -156,6 +145,8 @@ public class Car {
 					+ (y3 - (((y2 - y1) / 2) + y1)) * Math.cos(angle);
 			y4rot = (((y2 - y1) / 2) + y1) + (x4 - (((x3 - x1) / 3) + x1)) * Math.sin(angle)
 					+ (y4 - (((y2 - y1) / 2) + y1)) * Math.cos(angle);
+		} else {
+			// System.out.println("CAR " + ID + " BLOCCATTOOOOOO");
 		}
 
 		lock.unlock();

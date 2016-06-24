@@ -22,17 +22,17 @@ public class GameManager {
 		carManagerList.add(carManagerHuman);
 		switch (World.carToBeCreated) {
 		case 2:
-			carManagerList.add(new CarManagerAi(world, world.getCar2(), this));
+			carManagerList.add(new CarManagerDummyAi(world, world.getCar2(), this));
 			break;
 		case 3:
-			carManagerList.add(new CarManagerAi(world, world.getCar2(), this));
-			carManagerList.add(new CarManagerAi(world, world.getCar3(), this));
+			carManagerList.add(new CarManagerDummyAi(world, world.getCar2(), this));
+			carManagerList.add(new CarManagerDummyAi(world, world.getCar3(), this));
 
 			break;
 		case 4:
-			carManagerList.add(new CarManagerAi(world, world.getCar2(), this));
-			carManagerList.add(new CarManagerAi(world, world.getCar3(), this));
-			carManagerList.add(new CarManagerAi(world, world.getCar4(), this));
+			carManagerList.add(new CarManagerDummyAi(world, world.getCar2(), this));
+			carManagerList.add(new CarManagerDummyAi(world, world.getCar3(), this));
+			carManagerList.add(new CarManagerDummyAi(world, world.getCar4(), this));
 			break;
 		}
 
@@ -93,13 +93,12 @@ public class GameManager {
 						e.printStackTrace();
 					}
 					if (update) {
-//						for (CarManager cm : carManagerList) {
-//							cm.updateCar(carManagerList);
-						for(int i = 0; i < carManagerList.size();i++) 
-						{
-							carManagerList.get(i).updateCar(carManagerList,i);
-//							carManagerList.get(i).speedHandler();
-						
+						// for (CarManager cm : carManagerList) {
+						// cm.updateCar(carManagerList);
+						for (int i = 0; i < carManagerList.size(); i++) {
+							carManagerList.get(i).updateCar(carManagerList, i);
+							// carManagerList.get(i).speedHandler();
+
 						}
 					}
 				}
