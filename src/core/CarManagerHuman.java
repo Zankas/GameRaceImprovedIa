@@ -2,7 +2,7 @@ package core;
 
 public class CarManagerHuman extends AbstractCarManager {
 
-	public CarManagerHuman(World w, Car car) {
+	public CarManagerHuman(final World w,final Car car) {
 		super(w, car);
 	}
 

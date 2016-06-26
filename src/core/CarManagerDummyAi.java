@@ -3,18 +3,16 @@ package core;
 public class CarManagerDummyAi extends AbstractCarManager {
 
 	BlockRoadObject lastPiece;
-	GameManager game;
 	boolean alpha = true;
 	boolean beta;
 	Direction aiDirection;
 	double lastX, lastY;
 	final double AXEL = 2.0, BRAKE = 1.3;
 
-	public CarManagerDummyAi(World w, Car car, GameManager game) {
+	public CarManagerDummyAi(final World w, final Car car) {
 		super(w, car);
 		this.lastX = car.getX1rot();
 		this.lastY = car.getY1rot();
-		this.game = game;
 		this.lastPiece = world.getMatrixWorld().whereAmI(car);
 	}
 
@@ -257,4 +255,5 @@ public class CarManagerDummyAi extends AbstractCarManager {
 			car.move(world);
 		}
 	}
+
 }

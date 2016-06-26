@@ -1,6 +1,7 @@
 package core;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public interface CarManager {
 	void collisionGrass();
@@ -14,7 +15,7 @@ public interface CarManager {
 	void updateCar(ArrayList<CarManager> carManagerList, int i);
 
 	Car getCar();
-	
+
 	Direction getDirection();
 
 	void makeCheckPoint();
@@ -22,9 +23,11 @@ public interface CarManager {
 	void speedHandler();
 
 	Checkpoints getCheckpoints();
-	
+
 	boolean collisionDetection(Car car);
 
 	void setDirection();
+
+	void updateCar(HashMap<Integer,CarManager> map, Integer k);
 
 }

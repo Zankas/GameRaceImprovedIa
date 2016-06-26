@@ -123,31 +123,31 @@ public class GamePanel extends JPanel {
 			public void keyPressed(KeyEvent e) {
 
 				if (focus) {
-					if (e.getKeyCode() == KeyEvent.VK_5) {
-						System.out.println("CAR1");
-						System.out.println("X1 :" + game.getCarManagerList().get(0).getCar().getX1());
-						System.out.println("X2 :" + game.getCarManagerList().get(0).getCar().getX2());
-						System.out.println("X3 :" + game.getCarManagerList().get(0).getCar().getX3());
-						System.out.println("X4 :" + game.getCarManagerList().get(0).getCar().getX4());
-						System.out.println("Y1 :" + game.getCarManagerList().get(0).getCar().getY1());
-						System.out.println("Y2 :" + game.getCarManagerList().get(0).getCar().getY2());
-						System.out.println("Y3 :" + game.getCarManagerList().get(0).getCar().getY3());
-						System.out.println("Y4 :" + game.getCarManagerList().get(0).getCar().getY4());
-						System.out.println("CAR2");
-						System.out.println("X1 :" + game.getCarManagerList().get(1).getCar().getX1());
-						System.out.println("X2 :" + game.getCarManagerList().get(1).getCar().getX2());
-						System.out.println("X3 :" + game.getCarManagerList().get(1).getCar().getX3());
-						System.out.println("X4 :" + game.getCarManagerList().get(1).getCar().getX4());
-						System.out.println("Y1 :" + game.getCarManagerList().get(1).getCar().getY1());
-						System.out.println("Y2 :" + game.getCarManagerList().get(1).getCar().getY2());
-						System.out.println("Y3 :" + game.getCarManagerList().get(1).getCar().getY3());
-						System.out.println("Y4 :" + game.getCarManagerList().get(1).getCar().getY4());
-						// for (int i = 0; i < game.getCarManagerList().size();
-						// i++) {
-						// System.out.println("CAR N: " + i + " ID N: " +
-						// game.getCarManagerHuman().getCar().getID());
-						// }
-					}
+//					if (e.getKeyCode() == KeyEvent.VK_5) {
+//						System.out.println("CAR1");
+//						System.out.println("X1 :" + game.getCarManagerList().get(0).getCar().getX1());
+//						System.out.println("X2 :" + game.getCarManagerList().get(0).getCar().getX2());
+//						System.out.println("X3 :" + game.getCarManagerList().get(0).getCar().getX3());
+//						System.out.println("X4 :" + game.getCarManagerList().get(0).getCar().getX4());
+//						System.out.println("Y1 :" + game.getCarManagerList().get(0).getCar().getY1());
+//						System.out.println("Y2 :" + game.getCarManagerList().get(0).getCar().getY2());
+//						System.out.println("Y3 :" + game.getCarManagerList().get(0).getCar().getY3());
+//						System.out.println("Y4 :" + game.getCarManagerList().get(0).getCar().getY4());
+//						System.out.println("CAR2");
+//						System.out.println("X1 :" + game.getCarManagerList().get(1).getCar().getX1());
+//						System.out.println("X2 :" + game.getCarManagerList().get(1).getCar().getX2());
+//						System.out.println("X3 :" + game.getCarManagerList().get(1).getCar().getX3());
+//						System.out.println("X4 :" + game.getCarManagerList().get(1).getCar().getX4());
+//						System.out.println("Y1 :" + game.getCarManagerList().get(1).getCar().getY1());
+//						System.out.println("Y2 :" + game.getCarManagerList().get(1).getCar().getY2());
+//						System.out.println("Y3 :" + game.getCarManagerList().get(1).getCar().getY3());
+//						System.out.println("Y4 :" + game.getCarManagerList().get(1).getCar().getY4());
+//						// for (int i = 0; i < game.getCarManagerList().size();
+//						// i++) {
+//						// System.out.println("CAR N: " + i + " ID N: " +
+//						// game.getCarManagerHuman().getCar().getID());
+//						// }
+//					}
 					if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
 
 						SwingUtilities.invokeLater(new Runnable() {
@@ -345,10 +345,11 @@ public class GamePanel extends JPanel {
 			}
 			String tmp = br.readLine();
 			if (tmp != null) {
-				for (CarManager c : game.getCarManagerList()) {
-
-					c.getCheckpoints().setTotalLaps(Integer.parseInt(tmp));
-				}
+				game.getCarManagerMap().forEach((k, v) -> v.getCheckpoints().setTotalLaps(Integer.parseInt(tmp)));
+//				for (CarManager c : game.getCarManagerList()) {
+//					
+//					c.getCheckpoints().setTotalLaps(Integer.parseInt(tmp));
+//				}
 			}
 
 			br.close();
@@ -675,8 +676,12 @@ public class GamePanel extends JPanel {
 
 		g.drawString("Km/h " + (int) (game.getWorld().getCar().getSpeed() * 50), 480, 90);
 
-		g.drawString((int) (game.getCarManagerHuman().getCheckpoints().getActualLaps()) + "/"
-				+ game.getCarManagerHuman().getCheckpoints().getTotalLaps() + " Laps", 480, 40);
+		g.drawString((int) (game.getCarManagerMap().get(1).getCheckpoints().getActualLaps()) + "/"
+				+ game.getCarManagerMap().get(1).getCheckpoints().getTotalLaps() + " Laps", 480, 40);
+		// g.drawString((int)
+		// (game.getCarManagerHuman().getCheckpoints().getActualLaps()) + "/"
+		// + game.getCarManagerHuman().getCheckpoints().getTotalLaps() + "
+		// Laps", 480, 40);
 
 		g.drawString("Time " + actualCalendar.get(Calendar.MINUTE) + ":" + actualCalendar.get(Calendar.SECOND) + ":"
 				+ actualCalendar.get(Calendar.MILLISECOND), 700, 90);

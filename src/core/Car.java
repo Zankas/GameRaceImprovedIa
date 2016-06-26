@@ -57,7 +57,7 @@ public class Car {
 		setY((int) car.getY1());
 		setXYrotate();
 		setAngle(0);
-		this.ID = car.ID + 1;
+		this.ID = car.getID() + 1;
 
 		lock.unlock();
 	}

@@ -3,19 +3,22 @@ package core;
 import java.awt.Polygon;
 import java.awt.geom.Area;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public abstract class AbstractCarManager implements CarManager {
+
+	private Direction direction;
+	int position;
+
+	Checkpoints checkpoints;
 	Car car;
 	World world;
-	private Direction direction;
-	Checkpoints checkpoints;
-	int position;
 	final double angle = 0.011;
 	final double collisionAngle = angle + 0.001;
 	final double speed = 0.04;
 	final double collisionSpeed = speed + 0.01;
 
-	public AbstractCarManager(World w, Car car) {
+	public AbstractCarManager(final World w, final Car car) {
 		this.world = w;
 		this.car = car;
 
@@ -48,7 +51,7 @@ public abstract class AbstractCarManager implements CarManager {
 	}
 
 	@Override
-	public void updateCar(ArrayList<CarManager> carManagerList, int i) {
+	public void updateCar(final ArrayList<CarManager> carManagerList, final int i) {
 		totalMove();
 		setDirection();
 		check();
@@ -61,7 +64,29 @@ public abstract class AbstractCarManager implements CarManager {
 		}
 	}
 
-	private void applyCollision(Car car2, int aheadCar) {
+	@Override
+	public void updateCar(final HashMap<Integer, CarManager> map, final Integer key) {
+		totalMove();
+		check();
+		moving();
+		setDirection();
+		System.out.println(car.getID() + "\t" + car.getAngle() + "\t" + direction);
+		for (int i = key + 1; i <= map.size(); i++) {
+			if (collisionDetection(map.get(i).getCar())) {
+//				System.out.println("MACCHINA CHIAMANTE KEY :" + key + " ID: " + car.getID() + "\t" + direction);
+//				System.out.println("MACCHINA CHIAMAta KEY :" + i + " ID: " + map.get(i).getCar().getID() + "\t"
+//						+ map.get(i).getDirection());
+				applyCollision(map.get(i).getCar(), aheadCar(map.get(i)));
+			}
+		}
+		// map.forEach((k, v) -> {
+		// if (k > key) {
+		//
+		// }
+		// });
+	}
+
+	private void applyCollision(final Car car2, final int aheadCar) {
 		switch (aheadCar) {
 		// 0, 1, 2 ARE COMMON FOR ALL.
 		// 3 FOR DOWN TO LEFT.
@@ -291,11 +316,11 @@ public abstract class AbstractCarManager implements CarManager {
 
 	}
 
-	private double findCenter(double firstVar, double secondVar) {
+	private double findCenter(final double firstVar, final double secondVar) {
 		return Math.abs((firstVar + secondVar) / 2);
 	}
 
-	private int aheadCar(CarManager carManager) {
+	private int aheadCar(final CarManager carManager) {
 		if (this.direction == Direction.UP)
 			return aheadUp(carManager);
 		else if (direction == Direction.DOWN) {
@@ -448,13 +473,13 @@ public abstract class AbstractCarManager implements CarManager {
 
 	// Collision Detection.
 	@Override
-	public boolean collisionDetection(Car car2) {
+	public boolean collisionDetection(final Car car2) {
 
 		int[] xpoints = { (int) this.car.getX1rot(), (int) this.car.getX2rot(), (int) this.car.getX3rot(),
 				(int) this.car.getX4rot() };
 		int[] ypoints = { (int) this.car.getY1rot(), (int) this.car.getY2rot(), (int) this.car.getY3rot(),
 				(int) this.car.getY4rot() };
-		int npoints = 4;
+		final int npoints = 4;
 
 		Area areaA = new Area(new Polygon(xpoints, ypoints, npoints));
 
@@ -485,8 +510,8 @@ public abstract class AbstractCarManager implements CarManager {
 		if (checking_off_the_track())
 			return;
 
-		double cos = Math.cos(car.getAngle());
-		double sin = Math.sin(car.getAngle());
+		final double cos = Math.cos(car.getAngle());
+		final double sin = Math.sin(car.getAngle());
 
 		if ((world.getMatrixWorld().getValuePosition((int) (car.getY1rot() + (sin * car.getSpeed())),
 				(int) (car.getX1rot() + (cos * car.getSpeed()))) == BlockRoadObject.GRASS)
@@ -510,8 +535,8 @@ public abstract class AbstractCarManager implements CarManager {
 		if (checking_off_the_track())
 			return;
 
-		double cos = Math.cos(car.getAngle());
-		double sin = Math.sin(car.getAngle());
+		final double cos = Math.cos(car.getAngle());
+		final double sin = Math.sin(car.getAngle());
 
 		if (world.getMatrixWorld().getValuePosition((int) (car.getY1rot() + (sin * car.getSpeed())),
 				(int) (car.getX1rot() + (cos * car.getSpeed()))) == BlockRoadObject.CHECKPOINT) {
@@ -547,8 +572,8 @@ public abstract class AbstractCarManager implements CarManager {
 	}
 
 	public boolean checking_off_the_track() {
-		double cos = Math.cos(car.getAngle());
-		double sin = Math.sin(car.getAngle());
+		final double cos = Math.cos(car.getAngle());
+		final double sin = Math.sin(car.getAngle());
 
 		if (((int) (car.getY1rot() + (sin * car.getSpeed())) < 0)
 				|| ((int) (car.getX1rot() + (cos * car.getSpeed())) < 0)
@@ -590,8 +615,8 @@ public abstract class AbstractCarManager implements CarManager {
 		if (checking_off_the_track())
 			return;
 
-		double cos = Math.cos(car.getAngle());
-		double sin = Math.sin(car.getAngle());
+		final double cos = Math.cos(car.getAngle());
+		final double sin = Math.sin(car.getAngle());
 
 		if ((world.getMatrixWorld().getValuePosition((int) (car.getY1rot() + (sin * car.getSpeed())),
 				(int) (car.getX1rot() + (cos * car.getSpeed()))) == BlockRoadObject.START)
@@ -662,9 +687,19 @@ public abstract class AbstractCarManager implements CarManager {
 		} else if (car.getAngle() >= Math.PI + Math.PI / 4 && car.getAngle() <= Math.PI * 2 - Math.PI / 4) {
 			direction = Direction.UP;
 		} else if (car.getAngle() > Math.PI - Math.PI / 4 && car.getAngle() < Math.PI + Math.PI / 4) {
+			System.out.print("PORCO DIO ");
 			direction = Direction.LEFT;
-		} else {
-			direction = Direction.RIGHT;
+			System.out.println(direction);
+			
 		}
+		direction = Direction.RIGHT;
+	}
+
+	public int getPosition() {
+		return position;
+	}
+
+	public void setPosition(final int position) {
+		this.position = position;
 	}
 }
